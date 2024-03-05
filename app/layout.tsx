@@ -36,11 +36,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="config" content={JSON.stringify(getClientConfig())} />
-        <meta name="google-adsense-account" content="ca-pub-8339895143846620">
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
-        {/* Google AdSense script */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8339895143846620" crossOrigin="anonymous"></script>
       </head>
       <body>
         {children}
