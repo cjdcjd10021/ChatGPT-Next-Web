@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script'; // 引入 Script 组件
 
 class MyDocument extends Document {
   render() {
@@ -6,18 +7,20 @@ class MyDocument extends Document {
       <Html>
         <Head>
           {/* Google AdSense */}
-          <script
-            async
+          <Script
+            strategy="afterInteractive"
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8339895143846620"
             crossOrigin="anonymous"
-          ></script>
+          ></Script>
 
           {/* Google Analytics */}
-          <script
-            async
+          <Script
+            strategy="afterInteractive"
             src="https://www.googletagmanager.com/gtag/js?id=G-EQ27PZH0VM"
-          ></script>
-          <script
+            async
+          ></Script>
+          <Script
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
