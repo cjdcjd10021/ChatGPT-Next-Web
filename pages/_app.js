@@ -1,21 +1,24 @@
-// 在 pages/_app.js 或一个特定的页面组件中
 import { useEffect } from 'react';
+import { useRouter } from 'next/router'; // 导入 useRouter
 import Script from 'next/script';
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter(); // 使用 useRouter hook
+
   useEffect(() => {
-    // 确保在客户端代码执行
     const handleRouteChange = (url) => {
       window.gtag('config', 'G-EQ27PZH0VM', {
         page_path: url,
       });
     };
+
     // 监听路由变化事件
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
+      // 移除监听器以避免内存泄漏
       router.events.off('routeChangeComplete', handleRouteChange);
     };
-  }, []);
+  }, [router.events]); // 添加 router.events 作为依赖项
 
   return (
     <>
@@ -32,6 +35,7 @@ function MyApp({ Component, pageProps }) {
         async
       />
       <Script
+        id="google-analytics-script" // 添加 id 属性
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
@@ -48,4 +52,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
